@@ -37,6 +37,11 @@ AI NFT Collection Generator is a full-stack SaaS platform that turns natural lan
 
 ## Setup
 
+For full production go-live instructions, see:
+
+- `DEPLOYMENT.md`
+- `.env.production.example`
+
 1. Install dependencies:
 
 ```bash
