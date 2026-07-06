@@ -83,6 +83,29 @@ npm run dev
 docker compose up --build
 ```
 
+## GitHub Pages
+
+This repository now includes automatic GitHub Pages deployment using:
+
+- `.github/workflows/github-pages.yml`
+- `docs/index.html`
+
+Important:
+
+- GitHub Pages only hosts static content.
+- Your full SaaS app (Next.js API routes, Prisma, auth, Stripe, OpenSea runtime checks) must be deployed to a server platform.
+
+Enable Pages:
+
+1. Go to your GitHub repository settings.
+2. Open **Pages**.
+3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+4. Push to `main` and the workflow will publish `docs/index.html`.
+
+Resulting URL pattern:
+
+- `https://Adrijan-Petek.github.io/AI-NFT-Collection-Generator/`
+
 ## Generation workflow
 
 1. User creates a project in dashboard with prompt + collection settings.

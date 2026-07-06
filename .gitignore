@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# hardhat
+/artifacts
+/cache
+
+# local agent/skill installs
+/.agents
+/skills-lock.json
+
+# generated local payloads
+/opensea-tool-registration.json

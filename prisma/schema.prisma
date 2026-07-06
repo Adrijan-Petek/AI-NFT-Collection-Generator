@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Plan {
+  FREE
+  PRO
+}
+
+enum ProjectStatus {
+  DRAFT
+  GENERATING
+  READY
+  FAILED
+}
+
+model User {
+  id             String            @id @default(cuid())
+  clerkUserId    String            @unique
+  email          String            @unique
+  name           String?
+  plan           Plan              @default(FREE)
+  projects       Project[]
+  subscriptions  Subscription[]
+  usageEvents    UsageEvent[]
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+}
+
+model Project {
+  id                 String            @id @default(cuid())
+  ownerId            String
+  owner              User              @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  name               String
+  symbol             String
+  prompt             String
+  chain              String
+  size               Int
+  imageType          String            @default("png")
+  resolution         String            @default("1024x1024")
+  animated           Boolean           @default(false)
+  metadataLanguage   String            @default("en")
+  royaltyBps         Int               @default(500)
+  mintPriceEth       String            @default("0.02")
+  mintDateISO        String
+  status             ProjectStatus     @default(DRAFT)
+  draftJson          Json?
+  metadataCID        String?
+  imageCID           String?
+  previewUrl         String?
+  contractSource     String?
+  mintSiteHtml       String?
+  totalGenerated     Int               @default(0)
+  duplicateCount     Int               @default(0)
+  estimatedRevenue   String            @default("0")
+  items              NFTItem[]
+  usageEvents        UsageEvent[]
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+}
+
+model NFTItem {
+  id            String   @id @default(cuid())
+  projectId     String
+  project       Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  tokenId       Int
+  name          String
+  description   String
+  image         String
+  attributes    Json
+  rarityScore   Float?
+  rarityTier    String?
+  createdAt     DateTime @default(now())
+
+  @@unique([projectId, tokenId])
+}
+
+model Subscription {
+  id                  String   @id @default(cuid())
+  userId               String   @unique
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  stripeCustomerId     String?  @unique
+  stripeSubscriptionId String?  @unique
+  status               String
+  plan                 Plan
+  currentPeriodEnd     DateTime?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model UsageEvent {
+  id          String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projectId    String?
+  project      Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  type        String
+  units       Int      @default(1)
+  metadata    Json?
+  createdAt   DateTime @default(now())
+}
+
+model ErrorLog {
+  id          String   @id @default(cuid())
+  message     String
+  stack       String?
+  context     Json?
+  createdAt   DateTime @default(now())
+}

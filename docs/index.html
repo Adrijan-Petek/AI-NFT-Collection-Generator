@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI NFT Collection Generator</title>
+    <style>
+      :root {
+        --bg: #030712;
+        --fg: #e2e8f0;
+        --card: rgba(255, 255, 255, 0.08);
+        --line: rgba(255, 255, 255, 0.2);
+        --accent: #f59e0b;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: var(--fg);
+        background:
+          radial-gradient(circle at 10% 10%, rgba(14, 165, 233, 0.2), transparent 35%),
+          radial-gradient(circle at 90% 15%, rgba(245, 158, 11, 0.22), transparent 36%),
+          radial-gradient(circle at 50% 85%, rgba(239, 68, 68, 0.2), transparent 45%),
+          var(--bg);
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+      .wrap {
+        width: 100%;
+        max-width: 900px;
+        border: 1px solid var(--line);
+        background: var(--card);
+        backdrop-filter: blur(10px);
+        border-radius: 18px;
+        padding: 28px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: 38px;
+        line-height: 1.1;
+      }
+      p {
+        margin: 0 0 20px;
+        color: #cbd5e1;
+      }
+      .row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+      a.btn {
+        text-decoration: none;
+        color: #0b1120;
+        background: linear-gradient(135deg, var(--accent), #ef4444);
+        font-weight: 700;
+        padding: 10px 16px;
+        border-radius: 10px;
+      }
+      .muted {
+        color: #94a3b8;
+        font-size: 14px;
+      }
+      ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+      li { margin: 6px 0; }
+      code {
+        background: rgba(2, 6, 23, 0.6);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 2px 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>AI NFT Collection Generator</h1>
+      <p>
+        Full-stack SaaS for generating complete NFT collections with OpenSea-compatible metadata,
+        smart contracts, and mint-site outputs.
+      </p>
+
+      <div class="row">
+        <a class="btn" href="https://github.com/Adrijan-Petek/AI-NFT-Collection-Generator" target="_blank" rel="noreferrer">View Repository</a>
+      </div>
+
+      <ul>
+        <li>Frontend: Next.js + Tailwind + TypeScript</li>
+        <li>Backend: API routes + Prisma + PostgreSQL</li>
+        <li>Onchain: Base + ERC-721A + OpenSea tool registration flow</li>
+      </ul>
+
+      <p class="muted" style="margin-top: 16px;">
+        Note: GitHub Pages hosts this static info page only. Deploy the full app runtime to Vercel/Render and PostgreSQL to Neon/Supabase/Railway.
+      </p>
+      <p class="muted">
+        Update this page by editing <code>docs/index.html</code>.
+      </p>
+    </main>
+  </body>
+</html>
