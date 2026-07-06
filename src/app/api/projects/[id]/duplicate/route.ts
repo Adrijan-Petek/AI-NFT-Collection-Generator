@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { Prisma } from "@prisma/client";
 import { db } from "@/lib/db";
 import { requireUser, resolveDbUser } from "@/lib/auth";
 
@@ -32,7 +33,10 @@ export async function POST(_: Request, { params }: Params) {
       royaltyBps: original.royaltyBps,
       mintPriceEth: original.mintPriceEth,
       mintDateISO: original.mintDateISO,
-      draftJson: original.draftJson,
+      draftJson:
+        original.draftJson === null
+          ? undefined
+          : (original.draftJson as Prisma.InputJsonValue),
       status: "DRAFT",
     },
   });

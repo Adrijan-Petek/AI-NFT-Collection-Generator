@@ -11,7 +11,7 @@ export async function POST(req: Request) {
   }
 
   const result = await verifyWalletAccessOnBase({
-    wallet: parsed.data.wallet,
+    wallet: parsed.data.wallet as `0x${string}`,
     policy: {
       nftContract: parsed.data.nftContract as `0x${string}` | undefined,
       minNftBalance: parsed.data.minNftBalance,
