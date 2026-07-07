@@ -87,7 +87,9 @@ export function LandingSections() {
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-5 pb-24 text-white md:px-6">
       <section id="workflow" className="reveal panel rounded-3xl p-5 md:p-7">
         <p className="kicker">Workflow</p>
-        <h2 className="mt-2 text-xl font-black md:text-2xl">Built for creator teams shipping at production speed</h2>
+        <h2 className="mt-2 max-w-[24ch] text-balance text-xl font-black leading-tight tracking-[-0.025em] md:text-2xl">
+          Built for creator teams shipping at production speed
+        </h2>
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {workflow.map((step) => (
             <div key={step.id} className="rounded-2xl border border-slate-200/20 bg-slate-950/30 p-4">
@@ -114,8 +116,8 @@ export function LandingSections() {
       <section id="pricing" className="reveal grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <GlassCard className="border-cyan-200/25 bg-cyan-200/8">
           <p className="kicker">Professional Plan</p>
-          <h3 className="mt-2 text-2xl font-black">Pro</h3>
-          <p className="mt-1.5 max-w-xl text-sm text-slate-200">
+          <h3 className="mt-2 text-2xl font-black tracking-[-0.03em]">Pro</h3>
+          <p className="mt-1.5 max-w-[46ch] text-sm text-slate-200">
             End-to-end generation with contract, metadata, and deployment tooling for serious launches.
           </p>
           <p className="mt-4 text-3xl font-black text-white">$49<span className="text-base font-normal text-slate-300">/mo</span></p>

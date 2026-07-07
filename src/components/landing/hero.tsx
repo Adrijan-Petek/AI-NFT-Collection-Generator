@@ -7,15 +7,19 @@ export function Hero() {
     <section className="relative overflow-hidden px-5 pb-12 pt-14 md:px-6 md:pt-18">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(79,201,218,0.22),transparent_38%),radial-gradient(circle_at_80%_10%,rgba(232,177,79,0.23),transparent_35%),radial-gradient(circle_at_48%_90%,rgba(108,139,255,0.2),transparent_48%)]" />
       <div className="mx-auto grid w-full max-w-6xl items-end gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="reveal max-w-3xl space-y-7">
-          <p className="inline-flex items-center gap-2 rounded-full border border-slate-100/20 bg-slate-100/10 px-4 py-1 text-sm text-cyan-100">
+        <div className="reveal max-w-3xl space-y-6">
+          <p className="inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/8 px-3.5 py-1 text-xs font-medium text-cyan-200 tracking-wide">
             <Sparkles className="h-4 w-4" />
             Enterprise-grade AI collection pipeline
           </p>
-          <h1 className="max-w-[18ch] text-2xl font-black leading-[1.1] text-white md:text-3xl lg:text-[2.2rem]">
-            Launch premium NFT collections from a single creative brief.
+          <h1 className="max-w-[14ch] text-[1.65rem] font-black leading-[1.06] tracking-[-0.03em] text-white md:text-[2.1rem] lg:text-[2.4rem]">
+            Launch{" "}
+            <span className="bg-[linear-gradient(95deg,#4fc9da,#6c8bff)] bg-clip-text text-transparent">
+              premium NFT
+            </span>{" "}
+            collections from a single brief.
           </h1>
-          <p className="max-w-2xl text-sm text-slate-300 md:text-base">
+          <p className="max-w-[50ch] text-sm leading-relaxed text-slate-400 md:text-base">
             Replace fragmented tooling with one studio for trait strategy, rarity balancing, metadata generation,
             ERC-721A contracts, and deployment-grade mint pages.
           </p>

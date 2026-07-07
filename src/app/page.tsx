@@ -10,10 +10,10 @@ export default function Home() {
       <Navigation />
       <Hero />
       <LandingSections />
-      <section className="mx-auto mb-14 flex w-full max-w-6xl flex-col items-start justify-between gap-4 rounded-3xl border border-slate-100/15 bg-slate-100/5 px-5 py-8 text-white md:flex-row md:items-center md:px-8">
+      <section className="mx-auto mb-14 flex w-full max-w-6xl flex-col items-start justify-between gap-4 rounded-2xl border border-slate-100/10 bg-gradient-to-br from-slate-100/5 to-transparent px-6 py-7 text-white md:flex-row md:items-center md:px-10">
         <div>
           <p className="kicker">Launch Ready</p>
-          <p className="mt-1 text-base font-bold text-white md:text-lg">Turn concept into collection infrastructure.</p>
+          <p className="mt-1 max-w-[28ch] text-balance text-base font-bold tracking-[-0.02em] text-white md:text-lg">Turn concept into collection infrastructure.</p>
         </div>
         <div className="flex flex-wrap gap-3">
           <Link href="/dashboard">

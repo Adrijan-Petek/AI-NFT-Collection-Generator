@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Space_Grotesk, Syne } from "next/font/google";
 import { AppProviders } from "@/components/providers";
@@ -31,6 +31,9 @@ export const metadata: Metadata = {
       { rel: "android-chrome", url: "/android-chrome-512x512.png", sizes: "512x512" },
     ],
   },
+};
+
+export const viewport: Viewport = {
   themeColor: "#07111f",
 };
 
