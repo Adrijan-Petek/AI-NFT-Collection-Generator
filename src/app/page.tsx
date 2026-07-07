@@ -6,18 +6,23 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#07111f]">
       <Navigation />
       <Hero />
       <LandingSections />
-      <section className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 pb-16">
-        <p className="text-slate-300">Ready to launch your collection?</p>
-        <div className="flex gap-3">
+      <section className="mx-auto mb-14 flex w-full max-w-6xl flex-col items-start justify-between gap-4 rounded-3xl border border-slate-100/15 bg-slate-100/5 px-5 py-8 text-white md:flex-row md:items-center md:px-8">
+        <div>
+          <p className="kicker">Launch Ready</p>
+          <p className="mt-1 text-xl font-bold text-white md:text-2xl">Turn concept into collection infrastructure.</p>
+        </div>
+        <div className="flex flex-wrap gap-3">
           <Link href="/dashboard">
-            <Button>Open Dashboard</Button>
+            <Button className="px-5 py-2.5">Open Dashboard</Button>
           </Link>
           <Link href="/api-docs">
-            <Button variant="secondary">API Docs</Button>
+            <Button variant="secondary" className="px-5 py-2.5">
+              API Docs
+            </Button>
           </Link>
         </div>
       </section>

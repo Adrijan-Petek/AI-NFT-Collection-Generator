@@ -1,12 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #030712;
-  --fg: #f8fafc;
-  --muted: #94a3b8;
-  --accent-warm: #f59e0b;
-  --accent-hot: #ef4444;
-  --accent-cool: #0ea5e9;
+  --bg: #07111f;
+  --bg-soft: #0d1d33;
+  --bg-card: #11243d;
+  --fg: #edf4ff;
+  --muted: #9db0c8;
+  --accent-gold: #e8b14f;
+  --accent-cyan: #4fc9da;
+  --accent-blue: #6c8bff;
 }
 
 @theme inline {
@@ -16,12 +18,28 @@
 }
 
 body {
-  background: radial-gradient(circle at 10% 10%, rgba(14, 165, 233, 0.12), transparent 40%),
-    radial-gradient(circle at 90% 20%, rgba(245, 158, 11, 0.13), transparent 38%),
-    radial-gradient(circle at 50% 90%, rgba(239, 68, 68, 0.16), transparent 45%),
+  background:
+    radial-gradient(circle at 8% 10%, rgba(79, 201, 218, 0.18), transparent 38%),
+    radial-gradient(circle at 85% 14%, rgba(232, 177, 79, 0.2), transparent 34%),
+    radial-gradient(circle at 50% 100%, rgba(108, 139, 255, 0.2), transparent 44%),
+    linear-gradient(180deg, #0c1a2e 0%, #07111f 52%, #050c16 100%),
     var(--bg);
   color: var(--fg);
   font-family: var(--font-body), sans-serif;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(circle at 50% 20%, black, transparent 80%);
 }
 
 h1,
@@ -34,17 +52,31 @@ h6 {
   letter-spacing: -0.02em;
 }
 
-@keyframes fade-in-up {
+@keyframes drift-in {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(18px) scale(0.985);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
-section {
-  animation: fade-in-up 0.6s ease-out;
+.reveal {
+  animation: drift-in 0.7s ease-out both;
+}
+
+.panel {
+  border: 1px solid rgba(157, 176, 200, 0.22);
+  background: linear-gradient(165deg, rgba(17, 36, 61, 0.9), rgba(8, 20, 35, 0.78));
+  box-shadow: 0 18px 70px rgba(2, 8, 18, 0.5);
+}
+
+.kicker {
+  color: var(--accent-cyan);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  font-size: 0.74rem;
+  font-weight: 700;
 }
