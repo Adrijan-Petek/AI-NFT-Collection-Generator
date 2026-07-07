@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
@@ -7,11 +8,14 @@ export function Navigation() {
   const authEnabled = hasValidClerkConfig();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/10 bg-[#07111f]/75 backdrop-blur-xl">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-4 text-white md:px-6">
-        <Link href="/" className="flex flex-col leading-none">
-          <span className="text-xs font-semibold uppercase tracking-[0.15em] text-cyan-200/80">AI NFT Studio</span>
-          <span className="text-base font-black tracking-wide md:text-lg">Collection Generator</span>
+    <header className="sticky top-0 z-50 border-b border-slate-200/10 bg-[#07111f]/80 backdrop-blur-xl">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-3 text-white md:px-6">
+        <Link href="/" className="flex items-center gap-2.5 leading-none">
+          <Image src="/logo.png" alt="logo" width={28} height={28} className="rounded-lg" />
+          <div className="flex flex-col">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-cyan-200/70">AI NFT Studio</span>
+            <span className="text-sm font-bold tracking-tight">Collection Generator</span>
+          </div>
         </Link>
         <nav className="flex items-center gap-2 text-sm text-slate-200 md:gap-4">
           <Link href="#capabilities" className="hidden rounded-md px-2 py-1 transition hover:text-white md:block">

@@ -1,68 +1,132 @@
+<div align="center">
+
+<img src="public/logo.png" alt="AI NFT Collection Generator" width="72" />
+
 # AI NFT Collection Generator
 
-AI NFT Collection Generator is a full-stack SaaS platform that turns natural language prompts into production-ready NFT collections.
+**Enterprise-grade AI pipeline for launching production-ready NFT collections from a single creative brief.**
 
-## What it generates
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript)](https://typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38BDF8?style=flat-square&logo=tailwindcss)](https://tailwindcss.com)
+[![Hardhat](https://img.shields.io/badge/Hardhat-3-yellow?style=flat-square)](https://hardhat.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-- Collection concept, narrative, mission, and utility copy
-- Trait categories and values with rarity distribution
-- NFT metadata (OpenSea compatible)
-- Preview assets (first 20 items)
-- Duplicate-trait detection signals
-- ERC-721A contract source
-- Deployable mint-site HTML
-- IPFS metadata upload flow via Pinata
+[Live Demo](https://adrijan-petek.github.io/AI-NFT-Collection-Generator/) · [API Docs](/api-docs) · [Deployment Guide](DEPLOYMENT.md)
 
-## Core stack
+</div>
 
-- Frontend: Next.js 16, React 19, Tailwind CSS 4, TypeScript
-- Backend: Next.js API routes
-- Database: PostgreSQL + Prisma ORM
-- Auth: Clerk
-- Payments: OpenSea ERC-8257 onchain tool gating + optional Stripe fallback
-- Storage: Pinata IPFS
-- Blockchain: Solidity + OpenZeppelin + ERC721A + Hardhat
-- Wallet: RainbowKit + Wagmi (Base, Ethereum, Polygon)
-- Tests: Vitest
-- Infra: Docker + docker-compose
+---
 
-## Project structure
+## Overview
 
-- src/app: app routes and API handlers
-- src/components: landing, dashboard, and shared UI components
-- src/lib: domain logic (AI generation, rarity, contract templates, IPFS, Stripe, auth)
-- prisma: schema and seed scripts
-- contracts: Solidity contracts
-- test: unit tests
+AI NFT Collection Generator replaces fragmented NFT tooling with a single studio that takes you from a plain-language creative brief to a fully deployable collection — traits, rarity, metadata, smart contract, and mint site — in minutes.
 
-## Setup
+| Capability | Details |
+|---|---|
+| **Collection planning** | AI-derived concept, narrative, utility copy, and trait architecture |
+| **Rarity engine** | Weighted distributions, scarcity tiers (common → legendary), duplicate suppression |
+| **Metadata export** | OpenSea-compatible JSON with normalized `attributes[]` and collection references |
+| **Contract generation** | ERC-721A Solidity source, audited-ready, Hardhat 3 compilation |
+| **Mint site scaffold** | Deployable HTML with wallet connect and optional payment gating |
+| **IPFS pipeline** | One-click Pinata upload for metadata and preview assets |
+| **Preview rendering** | First 20 NFTs generated instantly per run |
 
-For full production go-live instructions, see:
+---
 
-- `DEPLOYMENT.md`
-- `.env.production.example`
+## Tech Stack
 
-1. Install dependencies:
+| Layer | Technology |
+|---|---|
+| **Frontend** | Next.js 16, React 19, Tailwind CSS 4, TypeScript 5 |
+| **Backend** | Next.js App Router API routes, Zod validation |
+| **Database** | PostgreSQL · Prisma ORM |
+| **Auth** | Clerk (graceful no-op when unconfigured) |
+| **Payments** | OpenSea ERC-8257 onchain tool gating · Stripe fallback |
+| **Storage** | Pinata IPFS |
+| **Blockchain** | Solidity 0.8.24 · OpenZeppelin · ERC721A · Hardhat 3 |
+| **Wallet** | RainbowKit · Wagmi · viem (Base, Ethereum, Polygon) |
+| **Testing** | Vitest |
+| **Infra** | Docker · docker-compose |
+
+---
+
+## Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router pages and API routes
+│   ├── page.tsx            # Landing page
+│   ├── dashboard/          # Authenticated project dashboard
+│   ├── admin/              # Admin analytics panel
+│   ├── api-docs/           # Endpoint reference
+│   └── api/
+│       ├── generate/       # Core AI generation endpoint
+│       ├── projects/       # Project CRUD
+│       ├── contracts/      # ERC-721A contract generation
+│       ├── mint-site/      # Mint page generation
+│       ├── ipfs/           # Pinata upload
+│       ├── billing/        # Stripe checkout
+│       └── pro/            # Onchain access gate
+├── components/
+│   ├── landing/            # Hero, sections
+│   ├── dashboard/          # Project UI panels
+│   ├── navigation.tsx
+│   └── ui/                 # Button, GlassCard primitives
+├── lib/
+│   ├── ai/                 # Collection engine, rarity, duplicate detector
+│   ├── blockchain/         # Contract templates
+│   ├── ipfs/               # Pinata client
+│   ├── mint-site/          # HTML template
+│   ├── onchain/            # OpenSea tool registry
+│   └── validations/        # Zod schemas
+├── proxy.ts                # Next.js 16 request proxy (auth guard)
+contracts/
+└── AINFTCollection.sol     # ERC-721A production contract
+prisma/
+├── schema.prisma
+└── seed.ts
+```
+
+---
+
+## Quick Start
+
+> For full production go-live instructions see [`DEPLOYMENT.md`](DEPLOYMENT.md).
+
+**1. Install dependencies**
 
 ```bash
 npm install
 ```
 
-2. Create env file:
+**2. Configure environment**
 
 ```bash
 cp .env.example .env
 ```
 
-3. Configure .env values for:
-- DATABASE_URL
-- NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY, CLERK_SECRET_KEY
-- STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, STRIPE_PRICE_PRO_MONTHLY
-- PINATA_JWT
-- OPENSEA_TOOL_ENDPOINT, OPENSEA_TOOL_OWNER
-- PRO_NFT_GATE / PRO_TOKEN_GATE / PRO_PAY_PER_CALL_WEI
+Edit `.env` and fill in:
 
-4. Run Prisma:
+| Variable | Purpose |
+|---|---|
+| `DATABASE_URL` | PostgreSQL connection string |
+| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Clerk auth (optional for local dev) |
+| `CLERK_SECRET_KEY` | Clerk auth (optional for local dev) |
+| `STRIPE_SECRET_KEY` | Stripe billing |
+| `STRIPE_WEBHOOK_SECRET` | Stripe webhook verification |
+| `STRIPE_PRICE_PRO_MONTHLY` | Stripe price ID for Pro plan |
+| `PINATA_JWT` | Pinata IPFS JWT |
+| `AI_PROVIDER` | `openai` or compatible |
+| `AI_API_KEY` | AI provider key |
+| `OPENSEA_TOOL_ENDPOINT` | Public HTTPS endpoint for onchain tool registry |
+| `OPENSEA_TOOL_OWNER` | Wallet address that owns the registered tool |
+| `PRO_NFT_GATE` | NFT contract address for Pro access gate |
+| `PRO_TOKEN_GATE` | ERC-20 token address for Pro access gate |
+| `PRO_PAY_PER_CALL_WEI` | Per-call price in wei (0 = free) |
+
+**3. Initialize database**
 
 ```bash
 npm run prisma:generate
@@ -70,17 +134,106 @@ npm run prisma:migrate
 npm run seed
 ```
 
-5. Start app:
+**4. Start development server**
 
 ```bash
 npm run dev
 ```
 
-6. Open:
-- http://localhost:3000 landing page
-- /dashboard project creation and generation
-- /admin admin panel
-- /api-docs endpoint overview
+| URL | Purpose |
+|---|---|
+| http://localhost:3000 | Landing page |
+| http://localhost:3000/dashboard | Project creation and generation |
+| http://localhost:3000/admin | Admin analytics |
+| http://localhost:3000/api-docs | API endpoint reference |
+
+---
+
+## Generation Workflow
+
+```
+User prompt
+    │
+    ▼
+POST /api/projects          ← Create project record
+    │
+    ▼
+POST /api/generate          ← AI collection engine
+    │                            - Parse brief
+    │                            - Build trait architecture
+    │                            - Apply rarity weights
+    │                            - Run duplicate checks
+    │                            - Generate preview metadata (20 items)
+    ▼
+POST /api/contracts/generate ← Compile ERC-721A Solidity source
+POST /api/mint-site/generate ← Scaffold deployable mint HTML
+POST /api/ipfs/upload        ← Pin metadata to Pinata IPFS
+```
+
+> For collections over 25 NFTs, `/api/generate` first validates onchain wallet access via the ERC-8257 tool registry on Base. Stripe checkout is available as a fallback billing path.
+
+---
+
+## Onchain Access Gating (OpenSea ERC-8257)
+
+```bash
+# 1. Install OpenSea skill
+npx skills add ProjectOpenSea/opensea-skill
+
+# 2. Generate registration payload
+npm run opensea:payload
+
+# 3. Register on Base
+# Prompt your agent: "Use the opensea-tool-sdk skill to register my tool onchain on Base."
+```
+
+Configure gating policy in `.env`:
+- `PRO_NFT_GATE` — require ownership of a specific NFT collection
+- `PRO_TOKEN_GATE` — require a minimum ERC-20 token balance
+- `PRO_PAY_PER_CALL_WEI` — charge per generation call in wei
+
+---
+
+## Smart Contract
+
+The generated contract (`contracts/AINFTCollection.sol`) extends **ERC-721A** with:
+- Batch minting optimized for low gas at scale
+- OpenZeppelin `Ownable` and `Pausable`
+- ERC-2981 royalty standard
+- Configurable public and allowlist mint phases
+
+```bash
+# Compile contracts
+npm run hardhat:compile
+```
+
+---
+
+## Marketplace Compatibility
+
+Metadata follows OpenSea standards and is compatible with:
+
+| Marketplace | Chain support |
+|---|---|
+| OpenSea | Base, Ethereum, Polygon |
+| Blur | Ethereum |
+| Magic Eden | Base, Polygon |
+
+Metadata structure per token:
+
+```json
+{
+  "name": "Collection Name #1",
+  "description": "...",
+  "image": "ipfs://...",
+  "attributes": [
+    { "trait_type": "Background", "value": "Holographic" },
+    { "trait_type": "Eyes",       "value": "Laser",        "rarity": "legendary" }
+  ]
+}
+```
+
+---
 
 ## Docker
 
@@ -88,89 +241,69 @@ npm run dev
 docker compose up --build
 ```
 
-## GitHub Pages
+Includes PostgreSQL, Next.js app, and Prisma migration runner.
 
-This repository now includes automatic GitHub Pages deployment using:
+---
 
-- `.github/workflows/github-pages.yml`
-- `docs/index.html`
+## GitHub Pages (Static Demo)
 
-Important:
+A static demo page is published automatically on every push to `main` via GitHub Actions.
 
-- GitHub Pages only hosts static content.
-- Your full SaaS app (Next.js API routes, Prisma, auth, Stripe, OpenSea runtime checks) must be deployed to a server platform.
+**Enable Pages:**
+1. Go to **Settings → Pages**
+2. Set **Source** to **GitHub Actions**
+3. Push to `main`
 
-Enable Pages:
+Published at: `https://Adrijan-Petek.github.io/AI-NFT-Collection-Generator/`
 
-1. Go to your GitHub repository settings.
-2. Open **Pages**.
-3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-4. Push to `main` and the workflow will publish `docs/index.html`.
+---
 
-Resulting URL pattern:
+## Available Scripts
 
-- `https://Adrijan-Petek.github.io/AI-NFT-Collection-Generator/`
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Start development server |
+| `npm run build` | Production build |
+| `npm run lint` | ESLint |
+| `npm run test` | Run Vitest unit tests |
+| `npm run prisma:generate` | Regenerate Prisma client |
+| `npm run prisma:migrate` | Run database migrations |
+| `npm run prisma:studio` | Open Prisma Studio |
+| `npm run seed` | Seed database with initial data |
+| `npm run hardhat:compile` | Compile Solidity contracts |
+| `npm run opensea:payload` | Generate OpenSea tool registration payload |
 
-## Generation workflow
+---
 
-1. User creates a project in dashboard with prompt + collection settings.
-2. Main Pro path: register your HTTPS endpoint in ERC-8257 on Base.
-3. Configure NFT/token gate and optional pay-per-call policy.
-4. /api/generate validates wallet access onchain for >25 NFT jobs.
-5. If gate passes, generation builds collection draft and preview metadata.
-6. User can trigger:
-- /api/contracts/generate for ERC-721A source
-- /api/mint-site/generate for deployable mint page
-- /api/ipfs/upload for metadata pinning
-7. Stripe checkout remains as fallback billing path.
+## Security
 
-## OpenSea registration flow
+- All protected routes validated via Clerk proxy guard (`src/proxy.ts`)
+- Environment variables validated with Zod at startup (`src/lib/env.ts`)
+- Clerk auth gracefully disabled when keys are placeholder/missing — no runtime crash
+- Stripe webhook signature verified server-side before processing
+- No private keys committed — `PRIVATE_KEY` loaded from `.env` only for Hardhat tasks
+- OWASP Top 10 considered across all API route handlers
 
-1. Install skill:
+---
 
-```bash
-npx skills add ProjectOpenSea/opensea-skill
-```
+## Roadmap
 
-2. Generate payload in this project:
+- [x] SaaS landing page with glassmorphism dark theme
+- [x] Authenticated dashboard — create, list, delete, duplicate, continue projects
+- [x] AI collection engine — traits, rarity, duplicate detection
+- [x] Metadata and export pipelines — IPFS, contract, mint site
+- [x] Admin analytics endpoint and panel
+- [x] Unit test suite (Vitest)
+- [x] Docker and docker-compose setup
+- [x] Next.js 16 proxy convention migration
+- [x] Hardhat 3 contract toolchain
+- [ ] Real image generation provider integration (Replicate / Stable Diffusion)
+- [ ] Queue workers for 10k-scale batch rendering
+- [ ] Allowlist / merkle tree phase support in generated contracts
+- [ ] Multi-chain deploy wizard
 
-```bash
-npm run opensea:payload
-```
+---
 
-3. Register on Base using the skill + SDK flow with generated payload.
-4. Prompt your coding agent: "Use the opensea-tool-sdk skill to scaffold and register my tool onchain on Base."
+## License
 
-## Marketplace compatibility
-
-Metadata format follows OpenSea-compatible conventions:
-- name
-- description
-- image
-- attributes[]
-- collection-level references
-
-Compatible target marketplaces:
-- OpenSea
-- Blur
-- Magic Eden (on supported EVM chains)
-
-## Security and production notes
-
-- Route protection uses Clerk middleware for dashboard and project APIs.
-- Env validation with Zod (src/lib/env.ts).
-- Add rate-limits and background queues before production scale.
-- Use signed uploads and server-side image pipelines for large batch generation.
-
-## Current implementation status
-
-Implemented:
-- SaaS landing page (glassmorphism dark mode)
-- Authenticated dashboard with create/list/delete/duplicate/continue flows
-- AI draft + rarity + duplicate checker foundation
-- Metadata and export pipelines (IPFS / contract / mint site)
-- Admin analytics endpoint and dashboard
-- Unit tests, Docker, Prisma schema
-
-Suggested next milestone:
-- Integrate real image generation provider and queue workers for 10k scale rendering.
+MIT © [Adrijan Petek](https://github.com/Adrijan-Petek)

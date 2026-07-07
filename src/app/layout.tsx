@@ -17,7 +17,11 @@ const bodyFont = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: "AI NFT Collection Generator",
-  description: "AI NFT Collection Generator SaaS",
+  description: "Enterprise-grade AI pipeline for launching production-ready NFT collections.",
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
