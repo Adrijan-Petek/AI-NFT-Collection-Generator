@@ -4,11 +4,14 @@ import { ProjectGenerator } from "@/components/dashboard/project-generator";
 import { ProjectList } from "@/components/dashboard/project-list";
 import { OpenSeaProPanel } from "@/components/dashboard/opensea-pro-panel";
 import { PreviewPanel } from "@/components/dashboard/preview-panel";
+import { hasValidClerkConfig } from "@/lib/clerk";
 
 export default async function DashboardPage() {
-  const session = await auth();
-  if (!session.userId) {
-    redirect("/");
+  if (hasValidClerkConfig()) {
+    const session = await auth();
+    if (!session.userId) {
+      redirect("/");
+    }
   }
 
   return (

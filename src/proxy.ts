@@ -12,17 +12,11 @@ const isProtectedRoute = createRouteMatcher([
 const hasClerkConfig = hasValidClerkConfig();
 
 function fallbackHandler(req: NextRequest) {
-  if (isProtectedRoute(req)) {
-    if (req.nextUrl.pathname.startsWith("/api/")) {
-      return NextResponse.json(
-        { error: "Auth is not configured. Set Clerk environment variables." },
-        { status: 503 },
-      );
-    }
-
-    const redirectUrl = new URL("/", req.url);
-    redirectUrl.searchParams.set("auth", "not-configured");
-    return NextResponse.redirect(redirectUrl);
+  if (isProtectedRoute(req) && req.nextUrl.pathname.startsWith("/api/")) {
+    return NextResponse.json(
+      { error: "Auth is not configured. Set Clerk environment variables." },
+      { status: 503 },
+    );
   }
 
   return NextResponse.next();
