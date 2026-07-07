@@ -118,7 +118,8 @@ Edit `.env` and fill in:
 | `STRIPE_WEBHOOK_SECRET` | Stripe webhook verification |
 | `STRIPE_PRICE_PRO_MONTHLY` | Stripe price ID for Pro plan |
 | `PINATA_JWT` | Pinata IPFS JWT |
-| `AI_PROVIDER` | `openai` or compatible |
+| `AI_PROVIDER` | `groq`, `gemini`, `openrouter`, or `openai` |
+| `AI_MODEL` | Optional model override. Defaults to `llama-3.3-70b-versatile` for Groq |
 | `AI_API_KEY` | AI provider key |
 | `OPENSEA_TOOL_ENDPOINT` | Public HTTPS endpoint for onchain tool registry |
 | `OPENSEA_TOOL_OWNER` | Wallet address that owns the registered tool |

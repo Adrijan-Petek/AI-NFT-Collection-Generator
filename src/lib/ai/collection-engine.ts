@@ -1,6 +1,6 @@
 import { findDuplicateTraitSets } from "@/lib/ai/duplicate-detector";
 import { generateDraftFromPrompt } from "@/lib/ai/prompt-parser";
-import type { GenerationSettings } from "@/types";
+import type { CollectionDraft, GenerationSettings } from "@/types";
 
 export type GeneratedNFT = {
   tokenId: number;
@@ -11,13 +11,13 @@ export type GeneratedNFT = {
 };
 
 export type GenerationResult = {
-  draft: ReturnType<typeof generateDraftFromPrompt>;
+  draft: CollectionDraft;
   items: GeneratedNFT[];
   duplicates: Array<[string, number[]]>;
 };
 
-export function generateCollection(prompt: string, settings: GenerationSettings): GenerationResult {
-  const draft = generateDraftFromPrompt(prompt);
+export async function generateCollection(prompt: string, settings: GenerationSettings): Promise<GenerationResult> {
+  const draft = await generateDraftFromPrompt(prompt);
 
   const items = Array.from({ length: settings.size }, (_, index) => {
     const traits = draft.traits.map((category) => ({

@@ -56,7 +56,7 @@ export async function POST(req: Request) {
     }
   }
 
-  const generation = generateCollection(project.prompt, {
+  const generation = await generateCollection(project.prompt, {
     chain: project.chain as "base" | "ethereum" | "polygon",
     size: project.size,
     resolution: project.resolution as "1024x1024" | "2048x2048",

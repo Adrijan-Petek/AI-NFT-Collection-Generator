@@ -13,7 +13,7 @@ const envSchema = z.object({
   PINATA_JWT: z.string().optional(),
   PINATA_GATEWAY: z.string().default("https://gateway.pinata.cloud/ipfs"),
   NEXT_PUBLIC_DEFAULT_CHAIN: z.enum(["base", "ethereum", "polygon"]).default("base"),
-  AI_PROVIDER: z.enum(["openai", "gemini", "groq"]).default("groq"),
+  AI_PROVIDER: z.enum(["groq", "gemini", "openrouter", "openai"]).default("groq"),
   AI_API_KEY: z.string().optional(),
   AI_MODEL: z.string().optional(),
 });
