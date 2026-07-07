@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Space_Grotesk, Syne } from "next/font/google";
 import { AppProviders } from "@/components/providers";
+import { hasValidClerkConfig } from "@/lib/clerk";
 import "./globals.css";
 
 const displayFont = Syne({
@@ -24,12 +25,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const authEnabled = hasValidClerkConfig();
+
   return (
     <html lang="en" className={`${displayFont.variable} ${bodyFont.variable} h-full antialiased`}>
       <body className="min-h-full bg-[#030712] text-white">
-        <ClerkProvider>
+        {authEnabled ? (
+          <ClerkProvider>
+            <AppProviders>{children}</AppProviders>
+          </ClerkProvider>
+        ) : (
           <AppProviders>{children}</AppProviders>
-        </ClerkProvider>
+        )}
       </body>
     </html>
   );
