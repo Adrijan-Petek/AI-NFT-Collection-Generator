@@ -13,8 +13,8 @@ export function Navigation() {
         <Link href="/" className="flex items-center gap-4 leading-none">
           <Image src="/logo2.png" alt="logo" width={100} height={100} className="rounded-2xl shrink-0" />
           <div className="flex flex-col gap-1">
-            <span className="text-sm font-bold uppercase tracking-[0.16em] text-cyan-300">AI NFT Studio</span>
-            <span className="text-xl font-black tracking-tight text-white">Collection Generator</span>
+            <span className="text-xs font-semibold uppercase tracking-[0.1em] text-cyan-300 md:text-sm">AI NFT Studio</span>
+            <span className="text-lg font-extrabold leading-tight text-white md:text-xl">Collection Generator</span>
           </div>
         </Link>
         <nav className="flex items-center gap-2 text-sm text-slate-200 md:gap-4">

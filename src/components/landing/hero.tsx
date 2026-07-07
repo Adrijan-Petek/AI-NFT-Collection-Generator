@@ -12,7 +12,7 @@ export function Hero() {
             <Sparkles className="h-4 w-4" />
             Enterprise-grade AI collection pipeline
           </p>
-          <h1 className="text-2xl font-black leading-[1.1] text-white md:text-3xl lg:text-[2.2rem]">
+          <h1 className="max-w-[18ch] text-2xl font-black leading-[1.1] text-white md:text-3xl lg:text-[2.2rem]">
             Launch premium NFT collections from a single creative brief.
           </h1>
           <p className="max-w-2xl text-sm text-slate-300 md:text-base">
