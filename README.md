@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/logo.png" alt="AI NFT Collection Generator" width="72" />
+<img src="public/logo.png" alt="AI NFT Collection Generator" width="200" />
 
 # AI NFT Collection Generator
 
