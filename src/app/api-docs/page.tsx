@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+
 export default function ApiDocsPage() {
   const docs = [
     { method: "POST", path: "/api/tools/register", purpose: "Generate ERC-8257 registry payload for OpenSea tool registration" },
@@ -12,9 +15,16 @@ export default function ApiDocsPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#030712] px-6 py-12 text-white">
+    <main className="min-h-screen bg-[#030712] px-6 py-8 text-white">
       <div className="mx-auto w-full max-w-4xl space-y-6">
-        <h1 className="text-4xl font-black">API Documentation</h1>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200/20 bg-slate-200/5 px-3 py-1.5 text-xs font-medium text-slate-300 transition hover:border-slate-200/40 hover:text-white"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" />
+          Back to home
+        </Link>
+        <h1 className="text-3xl font-black">API Documentation</h1>
         <p className="text-slate-300">Core endpoints for the AI NFT Collection Generator platform.</p>
         <div className="overflow-x-auto rounded-xl border border-white/20">
           <table className="min-w-full text-left text-sm">

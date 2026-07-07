@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 
 async function getStats() {
@@ -12,9 +14,16 @@ export default async function AdminPage() {
   const stats = await getStats();
 
   return (
-    <main className="min-h-screen bg-[#030712] px-6 py-12 text-white">
+    <main className="min-h-screen bg-[#030712] px-6 py-8 text-white">
       <div className="mx-auto w-full max-w-6xl space-y-6">
-        <h1 className="text-4xl font-black">Admin Panel</h1>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200/20 bg-slate-200/5 px-3 py-1.5 text-xs font-medium text-slate-300 transition hover:border-slate-200/40 hover:text-white"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" />
+          Back to home
+        </Link>
+        <h1 className="text-3xl font-black">Admin Panel</h1>
         <div className="grid gap-4 md:grid-cols-4">
           <GlassCard><p className="text-sm text-slate-300">Users</p><p className="text-3xl font-bold">{stats?.users ?? 0}</p></GlassCard>
           <GlassCard><p className="text-sm text-slate-300">Projects</p><p className="text-3xl font-bold">{stats?.projects ?? 0}</p></GlassCard>

@@ -1,12 +1,20 @@
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GlassCard } from "@/components/ui/glass-card";
 
 export default function PricingPage() {
   return (
-    <main className="min-h-screen bg-[#030712] px-6 py-14 text-white">
+    <main className="min-h-screen bg-[#030712] px-6 py-8 text-white">
       <div className="mx-auto w-full max-w-5xl space-y-6">
-        <h1 className="text-5xl font-black">Pricing</h1>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200/20 bg-slate-200/5 px-3 py-1.5 text-xs font-medium text-slate-300 transition hover:border-slate-200/40 hover:text-white"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" />
+          Back to home
+        </Link>
+        <h1 className="text-3xl font-black">Pricing</h1>
         <p className="text-slate-300">Choose the plan that matches your collection scale.</p>
         <div className="grid gap-6 md:grid-cols-2">
           <GlassCard>
