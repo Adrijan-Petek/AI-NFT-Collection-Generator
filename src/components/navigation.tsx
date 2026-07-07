@@ -11,7 +11,7 @@ export function Navigation() {
     <header className="sticky top-0 z-50 border-b border-slate-200/10 bg-[#07111f]/80 backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-0.5 text-white md:px-6">
         <Link href="/" className="flex items-center gap-4 leading-none">
-          <Image src="/logo.png" alt="logo" width={150} height={150} className="rounded-2xl shrink-0" />
+          <Image src="/logo2.png" alt="logo" width={100} height={100} className="rounded-2xl shrink-0" />
           <div className="flex flex-col gap-1">
             <span className="text-sm font-bold uppercase tracking-[0.16em] text-cyan-300">AI NFT Studio</span>
             <span className="text-xl font-black tracking-tight text-white">Collection Generator</span>
